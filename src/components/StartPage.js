@@ -11,8 +11,6 @@ class StartPage extends Component {
 
     getList = () => {
         getUsers()
-       
-
         .then(res => {
             console.log(res.data)
             this.setState({users:res.data})
@@ -23,7 +21,7 @@ class StartPage extends Component {
     render() {
         return (
             <div>
-                <h1>Welcome to Memory</h1>
+                <h1>Memory game</h1>
                 <p>Train your brain! Play this game every day. Keep your brain in shape!</p>
                 <UserName/>
                 <HighscoreTable users={this.state.users}/>
