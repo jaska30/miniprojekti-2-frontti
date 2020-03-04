@@ -1,30 +1,36 @@
 import React, { Component } from 'react';
 import GameBoard from "./GameBoard";
+
 class UserName extends Component {
     constructor(props) {
         super(props);
         this.state = {
           showComponent: false,
-          UserName: true
+
+          username: ""
         };
         this.startGame = this.startGame.bind(this);
     }
-    startGame = (e) => {
-        e.preventDefault();
-        this.setState({ showComponent: true})
-        this.setState({ UserName: false});
+
+    newUser = (e) => {
+        this.setState({username: e.target.value});
+
     }
+    startGame = (e) => {
+        // e.preventDefault();
+        this.setState({ showComponent: true });
+    }
+    
     
     render() {
         return (
             <form>
-                <div id="username">
-                
-                
-                {this.state.showComponent ? <GameBoard  /> :<p><b>Username</b> <br></br><input /><br/><br></br> <input value="Start Game" type="submit" onClick={this.startGame}/></p>}
-                
+                <div>
+                {this.state.showComponent ? <GameBoard user={this.state.username} newgame={this.startGame}/> : <p><b>Username</b>
+                <input className="input" onChange={this.newUser}/>
+                <input value="Start Game" type="button" onClick={this.startGame}/>
+                </p>}
                 </div>
-                
             </form>
         );
     }
