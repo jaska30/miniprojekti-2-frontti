@@ -1,136 +1,45 @@
 import React, { Component } from 'react';
 import { getPics } from '../service';
-import Cards from "./Cards"
+import Cards from "./Cards";
+import Timer from './Timer';
 
 class GameBoard extends Component {
-    // state = { images: [], msg: "Haetaan kuvia" }
-    // componentDidMount() {
-    //     this.picList();
-    // }
-    // picList = () => {
-    //     getPics()
-    //         .then(res => {
-    //             console.log(res.data)
-    //             this.setState({ images: res.data })
-    //         });
-    // }
+
+    //Images-arrayssä kuvien nimet kahteen kertaan. -jaska
+
+    state = { images: [{nimi:"bear.png"}, {nimi:'bunny.png'}, {nimi:'cat.png'}, {nimi:'deer.png'}, {nimi:'dog.png'}, {nimi:'duck.png'}, {nimi:'eagle.png'}, {nimi:'giraffe.png'}, {nimi:'hedgehog.png'}, {nimi:'kangaroo.png'}, {nimi:'lion.png'}, {nimi:'llama.png'}, {nimi:'mouse.png'}, {nimi:'owl.png'}, {nimi:'piggy.png'}, {nimi:'puppy.png'}, {nimi:'snake.png'}, {nimi:'squirrel.png'},
+    {nimi:"bear.png"}, {nimi:'bunny.png'}, {nimi:'cat.png'}, {nimi:'deer.png'}, {nimi:'dog.png'}, {nimi:'duck.png'}, {nimi:'eagle.png'}, {nimi:'giraffe.png'}, {nimi:'hedgehog.png'}, {nimi:'kangaroo.png'}, {nimi:'lion.png'}, {nimi:'llama.png'}, {nimi:'mouse.png'}, {nimi:'owl.png'}, {nimi:'piggy.png'}, {nimi:'puppy.png'}, {nimi:'snake.png'}, {nimi:'squirrel.png'}]}
+
+    //GameBoard-komponentin latauduttua kutsutaan shuffleImages-funktiota, mikä sekoittaa Images-arrayn järjestyksen. -jaska
+
+    componentDidMount() {
+        this.shuffleImages();
+    }
+
+     shuffleImages = () => {
+         var shuffled = this.state.images.sort((a, b) => .5- Math.random());
+         this.setState({images: shuffled })
+         console.log(this.state.images);
+    }
+        
+    //komponentin latauksen yhteydessä mäpätään Images-array ja luodaan itemistä oma div-elementti 
+    //gameboard-gridiin. -jaska
+
     render() {
+        var nodes = 
+         this.state.images.map(function(card) {
+            return ( <Cards  card={card}/>
+                )})
         return (
-            
+            <div>
+                <Timer />
             <div className="gameboard">
-                <div className="images">
-                <div>
-                    <img src={require('../pics/bear.png')} style={{width:'100px', height:'100px'}} />
-                </div>
-                <div>
-                    <img src={require('../pics/bear.png')} style={{width:'100px', height:'100px'}}/>
-                </div>
-                <div>
-                    <img src={require('../pics/bunny.png')} style={{width:'100px', height:'100px'}}/>
-                </div>
-                <div>
-                    <img src={require('../pics/bunny.png')} style={{width:'100px', height:'100px'}}/>
-                </div>
-                <div>
-                    <img src={require('../pics/cat.png')} style={{width:'100px', height:'100px'}}/>
-                </div>
-                <div>
-                    <img src={require('../pics/cat.png')} style={{width:'100px', height:'100px'}}/>
-                </div>
                 
-                <div>
-                    <img src={require('../pics/deer.png')} style={{width:'100px', height:'100px'}}/>
-                </div>
-                <div>
-                    <img src={require('../pics/deer.png')} style={{width:'100px', height:'100px'}}/>
-                </div>
-                <div>
-                    <img src={require('../pics/dog.png')} style={{width:'100px', height:'100px'}}/>
-                </div>
-                <div>
-                    <img src={require('../pics/dog.png')} style={{width:'100px', height:'100px'}}/>
-                </div>
-                <div>
-                    <img src={require('../pics/duck.png')} style={{width:'100px', height:'100px'}}/>
-                </div>
-                <div>
-                    <img src={require('../pics/duck.png')} style={{width:'100px', height:'100px'}}/>
-                </div>
-                <div>
-                    <img src={require('../pics/eagle.png')} style={{width:'100px', height:'100px'}}/>
-                </div>
-                <div>
-                    <img src={require('../pics/eagle.png')} style={{width:'100px', height:'100px'}}/>
-                </div>
-                <div>
-                    <img src={require('../pics/giraffe.png')} style={{width:'100px', height:'100px'}}/>
-                </div>
-                <div>
-                    <img src={require('../pics/giraffe.png')} style={{width:'100px', height:'100px'}}/>
-                </div>
-                <div>
-                    <img src={require('../pics/hedgehog.png')} style={{width:'100px', height:'100px'}}/>
-                </div>
-                <div>
-                    <img src={require('../pics/hedgehog.png')} style={{width:'100px', height:'100px'}}/>
-                </div>
-                <div>
-                    <img src={require('../pics/kangaroo.png')} style={{width:'100px', height:'100px'}}/>
-                </div>
-                <div>
-                    <img src={require('../pics/kangaroo.png')} style={{width:'100px', height:'100px'}}/>
-                </div>
-                <div>
-                    <img src={require('../pics/lion.png')} style={{width:'100px', height:'100px'}}/>
-                </div>
-                <div>
-                    <img src={require('../pics/lion.png')} style={{width:'100px', height:'100px'}}/>
-                </div>
-                <div>
-                    <img src={require('../pics/llama.png')} style={{width:'100px', height:'100px'}}/>
-                </div>
-                <div>
-                    <img src={require('../pics/llama.png')} style={{width:'100px', height:'100px'}}/>
-                </div>
-                <div>
-                    <img src={require('../pics/mouse.png')} style={{width:'100px', height:'100px'}}/>
-                </div>
-                <div>
-                    <img src={require('../pics/mouse.png')} style={{width:'100px', height:'100px'}}/>
-                </div>
-                <div>
-                    <img src={require('../pics/owl.png')} style={{width:'100px', height:'100px'}}/>
-                </div>
-                <div>
-                    <img src={require('../pics/owl.png')} style={{width:'100px', height:'100px'}}/>
-                </div>
-                <div>
-                    <img src={require('../pics/piggy.png')} style={{width:'100px', height:'100px'}}/>
-                </div>
-                <div>
-                    <img src={require('../pics/piggy.png')} style={{width:'100px', height:'100px'}}/>
-                </div>
-                <div>
-                    <img src={require('../pics/puppy.png')} style={{width:'100px', height:'100px'}}/>
-                </div>
-                <div>
-                    <img src={require('../pics/puppy.png')} style={{width:'100px', height:'100px'}}/>
-                </div>
-                <div>
-                    <img src={require('../pics/snake.png')} style={{width:'100px', height:'100px'}}/>
-                </div>
-                <div>
-                    <img src={require('../pics/snake.png')} style={{width:'100px', height:'100px'}}/>
-                </div>
-                <div>
-                    <img src={require('../pics/squirrel.png')} style={{width:'100px', height:'100px'}}/>
-                </div>
-                <div>
-                    <img src={require('../pics/squirrel.png')} style={{width:'100px', height:'100px'}}/>
-                </div>
-                <p>{this.props.user}</p>
-                <p>Score</p>
-                <input value="New Game" type="button" onClick={this.props.newgame} />
+                <div className="images">
+                    {nodes}
+            </div>
+            <p>Score</p>
+                <input value="New Game" type="button" onClick={this.props.newgame}/>
             </div>
             </div>
         );

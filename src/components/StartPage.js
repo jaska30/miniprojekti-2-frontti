@@ -6,7 +6,7 @@ import GameBoard from './GameBoard';
 
 class StartPage extends Component {
     state = { users: [], msg: "Haetaan dataa" }
-    componentDidMount() {
+    componentDidMount() {  //haetaan tietokannasta ajankohtainen tuloslista komponentin latauduttua. -jaska
         this.getList();
     }
 
