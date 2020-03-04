@@ -6,6 +6,7 @@ class UserName extends Component {
         super(props);
         this.state = {
           showComponent: false,
+
           username: ""
         };
         this.startGame = this.startGame.bind(this);
@@ -34,5 +35,4 @@ class UserName extends Component {
         );
     }
 }
-
 export default UserName;
