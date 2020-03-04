@@ -21,7 +21,7 @@ class GameBoard extends Component {
                 <p>{this.props.user}</p>
                 <p>Score</p>
                 <input value="New Game" type="button" onClick={this.props.newgame}/>
-                </div>
+            </div>
         );
     }
 }
