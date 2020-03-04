@@ -1,6 +1,9 @@
 import React, { Component } from 'react';
 
 class Cards extends Component {
+
+
+//Tässä rendereöidään div-elementti jokaisesta images-arrayn kuvan nimestä.-jaska
     render() {
         return (
             <div>
