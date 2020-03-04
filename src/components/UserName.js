@@ -12,6 +12,7 @@ class UserName extends Component {
         this.startGame = this.startGame.bind(this);
     }
 
+
     newUser = (e) => {
         this.setState({username: e.target.value});
 
@@ -20,13 +21,18 @@ class UserName extends Component {
         // e.preventDefault();
         this.setState({ showComponent: true });
     }
+
+    clickHandler = () => {
+        this.setState({ showComponent: false });
+        console.log('klikattu')
+    }
     
     
     render() {
         return (
             <form>
                 <div>
-                {this.state.showComponent ? <GameBoard user={this.state.username} newgame={this.startGame}/> : <p><b>Username</b>
+                {this.state.showComponent ? <GameBoard user={this.state.username} newgame={this.clickHandler}/> : <p><b>Username</b>
                 <input className="input" onChange={this.newUser}/>
                 <input value="Start Game" type="button" onClick={this.startGame}/>
                 </p>}

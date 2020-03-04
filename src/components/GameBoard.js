@@ -3,6 +3,7 @@ import { getPics } from '../service';
 import Cards from "./Cards";
 import Timer from './Timer';
 
+
 class GameBoard extends Component {
 
     //Images-arrayssä kuvien nimet kahteen kertaan. -jaska
@@ -21,6 +22,8 @@ class GameBoard extends Component {
          this.setState({images: shuffled })
          console.log(this.state.images);
     }
+
+
         
     //komponentin latauksen yhteydessä mäpätään Images-array ja luodaan itemistä oma div-elementti 
     //gameboard-gridiin. -jaska
