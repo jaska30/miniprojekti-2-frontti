@@ -35,6 +35,7 @@ class GameBoard extends Component {
                 )})
         return (
             <div>
+                <p style={{fontSize: '30px'}}><b>Player: {this.props.username}</b></p>
                 <Timer />
             <div className="gameboard">
                 
