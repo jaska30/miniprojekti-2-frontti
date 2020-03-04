@@ -28,6 +28,30 @@
   color: #61dafb;
 }
 
+.userlist {
+  text-Align: center;
+  margin: 20px;
+  border: 2px solid black;
+  border-Radius: 10px;
+  width: 400px;
+  height: 520px;
+  display:inline-block
+}
+.gameboard {
+  background: #ccc;
+  border: 1px solid black;
+  padding: 24px;
+  width: 700px;
+  height: 700px;
+  margin: 50px;
+  display: inline-block;
+  
+}
+.images {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+}
+
 @keyframes App-logo-spin {
   from {
     transform: rotate(0deg);
