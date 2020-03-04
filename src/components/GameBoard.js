@@ -18,7 +18,10 @@ class GameBoard extends Component {
         return (
             <div>
                 <Cards info={this.state.images}/>
-            </div>
+                <p>{this.props.user}</p>
+                <p>Score</p>
+                <input value="New Game" type="button" onClick={this.props.newgame}/>
+                </div>
         );
     }
 }

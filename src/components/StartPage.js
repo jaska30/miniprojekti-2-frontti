@@ -24,7 +24,6 @@ class StartPage extends Component {
                 <p>Train your brain! Play this game every day. Keep your brain in shape!</p>
                 <UserName />
                 <HighscoreTable users={this.state.users} />
-                <GameBoard />
             </div>
         );
     }
