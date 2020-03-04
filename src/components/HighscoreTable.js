@@ -13,9 +13,10 @@ class HighscoreTable extends Component {
         }.bind(this));
         return (
             <div>
-                <ul className="userlist">
+                <div className="userlist">
+                    <h2>ALL TIME HIGH SCORE</h2>
                     {all}
-                </ul>
+                </div>
             </div>
         );
     }
