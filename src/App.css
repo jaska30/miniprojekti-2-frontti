@@ -35,7 +35,19 @@
   border-Radius: 10px;
   width: 400px;
   height: 520px;
-  display: inline-block
+  display:inline-block
+}
+
+.gameboard {
+  background: #ccc;
+  border: 1px solid black;
+  padding: 24px;
+  width: 500px;
+  height: 500px;
+  margin: 50px;
+  display:inline-block;
+  flex:1
+  
 }
 
 @keyframes App-logo-spin {
