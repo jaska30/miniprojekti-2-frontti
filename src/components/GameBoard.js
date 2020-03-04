@@ -30,8 +30,8 @@ class GameBoard extends Component {
 
     render() {
         var nodes = 
-         this.state.images.map(function(card) {
-            return ( <Cards  card={card}/>
+         this.state.images.map(function(card, name) {
+            return ( <Cards  card={card} key={name}/>
                 )})
         return (
             <div>

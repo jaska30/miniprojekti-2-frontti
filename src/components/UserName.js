@@ -17,9 +17,12 @@ class UserName extends Component {
         this.setState({username: e.target.value});
 
     }
-    startGame = (e) => {
-        // e.preventDefault();
-        this.setState({ showComponent: true });
+    startGame = (e) => {  //aloittaa pelin, vaatii kuitenkin käyttäjänimen syöttämisen ennen pelin aloitusta. -jaska
+        if(this.state.username == "")    {
+            alert('Username required')
+        }   else {
+            this.setState({ showComponent: true });
+        }
     }
 
     clickHandler = () => {
