@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import { getUsers } from '../service'
 import UserName from "./UserName"
 import HighscoreTable from './HighscoreTable';
-import GameBoard from './GameBoard';
 
 class StartPage extends Component {
     state = { users: [], msg: "Haetaan dataa" }
