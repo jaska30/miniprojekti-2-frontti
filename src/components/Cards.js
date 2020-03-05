@@ -2,31 +2,36 @@ import React, { Component } from 'react';
 
 class Cards extends Component {
 
-state={klikattu: true}
+
 
 funktio = () => {
-    this.setState({klikattu: !this.state.klikattu})
+   // this.setState({klikattu: !this.state.klikattu})
+   this.props.klikattu(this.props.indeksi);
 }
 //Tässä rendereöidään div-elementti jokaisesta images-arrayn kuvan nimestä.-jaska
     render() {
-        if (!this.state.klikattu) {
-            return (
+        if (this.props.card.kaannetty) {
             
-                <div>
-                    <div onClick={this.funktio}>
-                    <img src={require('../pics/'+ this.props.card.nimi)} alt={"memory pics"} style={{width:'100px', height:'100px'}} />
+            return (
+                
+                <div onClick={this.funktio}>
+                    <div>
+                    <img src={require('../pics/'+ this.props.card.nimi)} alt={"memory pics"} style={{width:'100px', height:'100px'} } />
                     </div>
                 </div>
             );
         }
         else {
+           
             return( <div>
-                <div onClick={this.funktio} style={{width:'100px', height:'100px', backgroundColor:'blue'}} >
+                <div onClick={this.funktio} style={{width:'100px', height:'100px', backgroundColor:'black'}} >
                     </div>
                     </div>) 
         }
         
     }
 }
+
+
 
 export default Cards;
