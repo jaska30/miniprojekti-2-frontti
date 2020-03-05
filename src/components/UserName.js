@@ -5,6 +5,7 @@ class UserName extends Component {
     constructor(props) {
         super(props);
         this.state = {
+          users: [],
           showComponent: false,
 
           username: ""
@@ -18,7 +19,7 @@ class UserName extends Component {
 
     }
     startGame = (e) => {  //aloittaa pelin, vaatii kuitenkin käyttäjänimen syöttämisen ennen pelin aloitusta. -jaska
-        if(this.state.username == "")    {
+        if(this.state.username === "")    {
             alert('Username required')
         }   else {
             this.setState({ showComponent: true });

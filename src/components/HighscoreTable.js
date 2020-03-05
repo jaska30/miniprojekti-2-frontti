@@ -10,12 +10,13 @@ class HighscoreTable extends Component {
             })
             .map(function (username) {
                 return (<User user={username} key={username.id} />) //mäpätään tietokannan tulokset ja luodaan lista parhaimmista pelaajista. -jaska
-            }.bind(this));
+            });
         return (
             <div>
-                <ul className="userlist">
+                <div className="userlist">
+                    <h2>ALL TIME HIGH SCORE</h2>
                     {all}
-                </ul>
+                </div>
             </div>
         );
     }

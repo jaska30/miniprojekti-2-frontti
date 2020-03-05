@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { getPics } from '../service';
+// import { getPics } from '../service';
 import Cards from "./Cards";
 import Timer from './Timer';
 
