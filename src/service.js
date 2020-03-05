@@ -6,9 +6,9 @@ function getUsers() {
     return axios.get(appURL)
 }
 
-function addUsers(nq) {
-    console.log(nq)
-    return axios.post(appURL, nq)
+function addUsers(savescore) {
+    console.log(savescore)
+    return axios.post(appURL, savescore)
 }
 
 function getPics() {

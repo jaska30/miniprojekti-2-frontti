@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import GameBoard from "./GameBoard";
+import { getUsers } from '../service';
 
 class UserName extends Component {
     constructor(props) {

@@ -16,6 +16,7 @@ class HighscoreTable extends Component {
                 <div className="userlist">
                     <h2>ALL TIME HIGH SCORE</h2>
                     {all}
+
                 </div>
             </div>
         );
