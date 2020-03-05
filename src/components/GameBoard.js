@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
-import { getPics } from '../service';
+// import { getPics } from '../service';
 import Cards from "./Cards";
 import Timer from './Timer';
+
 
 class GameBoard extends Component {
 
@@ -21,17 +22,20 @@ class GameBoard extends Component {
          this.setState({images: shuffled })
          console.log(this.state.images);
     }
+
+
         
     //komponentin latauksen yhteydessä mäpätään Images-array ja luodaan itemistä oma div-elementti 
     //gameboard-gridiin. -jaska
 
     render() {
         var nodes = 
-         this.state.images.map(function(card) {
-            return ( <Cards  card={card}/>
+         this.state.images.map(function(card, name) {
+            return ( <Cards  card={card} key={name}/>
                 )})
         return (
             <div>
+                <p style={{fontSize: '30px'}}><b>Player: {this.props.username}</b></p>
                 <Timer />
             <div className="gameboard">
                 
