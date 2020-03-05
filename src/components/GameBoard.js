@@ -17,7 +17,9 @@ class GameBoard extends Component {
             { nimi: "bear.png" }, { nimi: 'bunny.png' }, { nimi: 'cat.png' }, { nimi: 'deer.png' }, { nimi: 'dog.png' }, { nimi: 'duck.png' }, { nimi: 'eagle.png' }, { nimi: 'giraffe.png' }, { nimi: 'hedgehog.png' }, { nimi: 'kangaroo.png' }, { nimi: 'lion.png' }, { nimi: 'llama.png' }, { nimi: 'mouse.png' }, { nimi: 'owl.png' }, { nimi: 'piggy.png' }, { nimi: 'puppy.png' }, { nimi: 'snake.png' }, { nimi: 'squirrel.png' }]
         this.state = {
             images: images.map(i=>{return {nimi: i.nimi, lukittu: false, kaannetty: false}}),
-            count: 0
+            count: 0,
+            lasku: 0,
+            points: 0
         }
 
     }
@@ -35,7 +37,6 @@ class GameBoard extends Component {
 
     resetoiTaulukko = (callback) => {
         const indeksit = [];
-        let aika;
         for(let i = 0 ; i < this.state.images.length ; ++i) {
             const kuva = this.state.images[i];
             if (kuva.kaannetty && !kuva.lukittu) {
@@ -48,10 +49,17 @@ class GameBoard extends Component {
             const kuva2 = this.state.images[indeksit[1]];
             if(kuva1.nimi == kuva2.nimi) {
                 kuva1.lukittu = kuva2.lukittu = true;
+                this.setState({lasku: this.state.lasku+1})
+                console.log('lasku'+this.state.lasku)
+                if(this.state.lasku === 17) {
+                    
+                    alert('HIHHIHHIII, VOITIT PELIN!!')
+                }
+                
                 callback();
             } else {
                 kuva1.kaannetty = kuva2.kaannetty = false;
-                setTimeout(()=>{callback()}, 2000);
+                setTimeout(()=>{callback()}, 1000);
             }
         } else if (indeksit.length !== 0) {
             console.error("Virhe", indeksit);
@@ -66,7 +74,10 @@ class GameBoard extends Component {
         this.setState({}, () => {
         if (this.state.count === 1) {
             console.log('kaksi käännetty')
+            
             this.resetoiTaulukko(()=>{
+                this.setState({points: this.state.points+1})
+                console.log('pisteet' + this.state.points)
                 this.setState({count: 0})
             })
         } else {
@@ -75,7 +86,6 @@ class GameBoard extends Component {
         })
         console.groupEnd();
     }
-
 
 
 
@@ -92,12 +102,13 @@ class GameBoard extends Component {
             <div>
                 <p style={{ fontSize: '30px' }}><b>Player: {this.props.username}</b></p>
                 <Timer />
+        <p>Your score: {this.state.points}</p>
                 <div className="gameboard">
 
                     <div className="images">
                         {nodes}
                     </div>
-                    <p>Score</p>
+                    <p className="score">Score</p>
                     <input value="New Game" type="button" onClick={this.props.newgame} />
                 </div>
             </div>
