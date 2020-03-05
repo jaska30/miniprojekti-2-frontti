@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { getUsers } from '../service'
 import UserName from "./UserName"
 import HighscoreTable from './HighscoreTable';
-// import GameBoard from './GameBoard';
+import GameBoard from './GameBoard';
 
 class StartPage extends Component {
     state = { users: [], msg: "Haetaan dataa" }
@@ -21,8 +21,7 @@ class StartPage extends Component {
         return (
             <div>
                 <h1>Memory game</h1>
-                <p>The objective of the game is to find all the pairs as quickly as possible. 
-                A stopwatch will show you how much time you have spent to find all the pairs</p>
+                <p>Train your brain! Play this game every day. Keep your brain in shape!</p>
                 <UserName />
                 <HighscoreTable users={this.state.users} />
             </div>

@@ -8,7 +8,7 @@ class Cards extends Component {
         return (
             <div>
                 <div>
-                <img src={require('../pics/'+ this.props.card.nimi)} alt={"memory pics"} style={{width:'100px', height:'100px'}} />
+                <img src={require('../pics/'+ `${this.props.card.nimi}`)} style={{width:'100px', height:'100px'}} />
                 </div>
             </div>
         );
