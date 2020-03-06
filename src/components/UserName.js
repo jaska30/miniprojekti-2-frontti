@@ -18,7 +18,6 @@ class UserName extends Component {
 
     }
     startGame = (e) => {
-        
             // e.preventDefault();
             if(this.state.username == "")   {
                 alert('Username required')

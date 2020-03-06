@@ -45,6 +45,7 @@ class GameBoard extends Component {
             lasku: 0,
             username: this.props.user,
             score: 0,
+            username: this.props.user,
             tarkistaa: false,
             
             
