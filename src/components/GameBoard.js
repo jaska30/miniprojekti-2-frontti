@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import Cards from "./Cards";
 import Timer from './Timer';
+import {addUsers, getUsers} from '../service';
+
 
 
 class GameBoard extends Component {
@@ -40,7 +42,11 @@ class GameBoard extends Component {
         this.state = {
             images: images.map(i=>{return {nimi: i.nimi, lukittu: false, kaannetty: false}}),
             count: 0,
-            tarkistaa: false
+            lasku: 0,
+            points: 0,
+            tarkistaa: false,
+            info:[{username:"", score:0}]
+            
         }
 
     }
@@ -71,6 +77,14 @@ class GameBoard extends Component {
             const kuva2 = this.state.images[indeksit[1]];
             if(kuva1.nimi === kuva2.nimi) {
                 kuva1.lukittu = kuva2.lukittu = true;
+                this.setState({lasku: this.state.lasku+1})
+                console.log('lasku'+this.state.lasku)
+                if(this.state.lasku === 17) {
+                    
+                    alert('HIHHIHHIII, VOITIT PELIN!!')
+                    this.newUsers()
+                }
+                
                 callback();
             } else {
                 kuva1.kaannetty = kuva2.kaannetty = false;
@@ -88,7 +102,7 @@ class GameBoard extends Component {
     }
 
     clicks = (id) => {
-        if (this.state.tarkistaa === true) return
+        if(this.state.tarkistaa) return;
         console.group("clicks");
         console.log("id", id);
         this.state.images[id].kaannetty = !this.state.images[id].kaannetty
@@ -96,18 +110,36 @@ class GameBoard extends Component {
         this.setState({tarkistaa: true}, () => {
         if (this.state.count === 1) {
             console.log('kaksi käännetty')
+            
             this.resetoiTaulukko(()=>{
+                this.setState({points: this.state.points+1})
+                this.setState({info: this.state.info.score+1})
+                console.log('pisteet' + this.state.points)
                 this.setState({count: 0, tarkistaa: false})
             })
         } else {
-            this.setState({tarkistaa: false, count: this.state.count+1})
+            this.setState({count: this.state.count+1, tarkistaa: false})
         }
         })
         console.groupEnd();
     }
 
+    newUsers = (info) => {
+        info.prevenDefault()
+        console.log(info)
+        addUsers(info).then(res =>{
+            this.getList()
 
-
+            }
+        )}
+    
+    getList = () => {
+        this.getUsers()
+            .then(res => {
+                console.log(res.data)
+                this.setState({ users: res.data })
+            });
+        }
 
     //komponentin latauksen yhteydessä mäpätään Images-array ja luodaan itemistä oma div-elementti 
     //gameboard-gridiin. -jaska
@@ -120,15 +152,18 @@ class GameBoard extends Component {
             }.bind(this))
         return (
             <div>
-                <input value="Submit" type="submit" onClick={this.newUser}/>
+                <form>
                 <p style={{ fontSize: '30px' }}><b>Player: {this.props.username}</b></p>
                 <Timer />
+        <p>Your score: {this.state.points}</p>
+        <button type="submit" onClick={this.newUsers}>submit</button>
+        </form>
                 <div className="gameboard">
 
                     <div className="images">
                         {nodes}
                     </div>
-                    <p>Score</p>
+                    <p className="score">Score</p>
                     <input value="New Game" type="button" onClick={this.props.newgame} />
                 </div>
             </div>
