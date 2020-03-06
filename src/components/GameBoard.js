@@ -155,6 +155,9 @@ class GameBoard extends Component {
                 return (<Cards card={card} klikattu={this.clicks} indeksi={name} key={name} />
                 )
             }.bind(this))
+            if (this.state.lasku === 18) {
+            return(<button type="submit" onClick={this.newUsers}>Submit your score of {this.state.score}!</button>)
+            }
         return (
             <div>
 
@@ -162,7 +165,7 @@ class GameBoard extends Component {
                 <p style={{ fontSize: '30px' }}><b>Player: {this.props.user}</b></p>
                 {/* <Timer /> */}
         <p>Your score: {this.state.score}</p>
-        <button type="submit" onClick={this.newUsers}>submit</button>
+        {/* <button type="submit" onClick={this.newUsers}>submit</button> */}
         </form>
 
                 <div className="gameboard">
@@ -171,7 +174,7 @@ class GameBoard extends Component {
                         {nodes}
                     </div>
                     <p className="score">Score</p>
-                    {/* <input value="New Game" type="button" onClick={this.props.newgame} /> */}
+                    <input value="New Game" type="button" onClick={this.props.newgame} />
                 </div>
             </div>
         );
