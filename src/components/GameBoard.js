@@ -43,9 +43,10 @@ class GameBoard extends Component {
             images: images.map(i=>{return {nimi: i.nimi, lukittu: false, kaannetty: false}}),
             count: 0,
             lasku: 0,
-            points: 0,
+            score: 0,
             tarkistaa: false,
-            info:[{username:"", score:0}]
+            // info:[{username:"", score:0}]
+            username:this.props.user,
             
         }
 
@@ -53,6 +54,8 @@ class GameBoard extends Component {
     //GameBoard-komponentin latauduttua kutsutaan shuffleImages-funktiota, mikä sekoittaa Images-arrayn järjestyksen. -jaska
 
     componentDidMount() {
+        console.log(this.props.user);
+        
         this.shuffleImages();
     }
 
@@ -96,11 +99,6 @@ class GameBoard extends Component {
         }
     }
 
-    newUser = (e) => {
-        e.preventDefault();
-        console.log(e)
-    }
-
     clicks = (id) => {
         if(this.state.tarkistaa) return;
         console.group("clicks");
@@ -112,9 +110,8 @@ class GameBoard extends Component {
             console.log('kaksi käännetty')
             
             this.resetoiTaulukko(()=>{
-                this.setState({points: this.state.points+1})
-                this.setState({info: this.state.info.score+1})
-                console.log('pisteet' + this.state.points)
+                this.setState({score: this.state.score+1})
+                console.log('pisteet' + this.state.score)
                 this.setState({count: 0, tarkistaa: false})
             })
         } else {
@@ -124,22 +121,25 @@ class GameBoard extends Component {
         console.groupEnd();
     }
 
-    newUsers = (info) => {
-        info.prevenDefault()
-        console.log(info)
-        addUsers(info).then(res =>{
-            this.getList()
-
+    newUsers = (e) => {
+        e.preventDefault()
+        console.log(this.state)
+        addUsers(this.state).then(res=>{
+            getUsers()
+            .then(res => {
+                this.setState({ username: "", score: 0 })
+            });
             }
+            
         )}
     
-    getList = () => {
-        this.getUsers()
-            .then(res => {
-                console.log(res.data)
-                this.setState({ users: res.data })
-            });
-        }
+    // getList = () => {
+    //     getUsers()
+    //         .then(res => {
+    //             console.log(res.data)
+    //             this.setState({ users: res.data })
+    //         });
+    //     }
 
     //komponentin latauksen yhteydessä mäpätään Images-array ja luodaan itemistä oma div-elementti 
     //gameboard-gridiin. -jaska
@@ -153,9 +153,9 @@ class GameBoard extends Component {
         return (
             <div>
                 <form>
-                <p style={{ fontSize: '30px' }}><b>Player: {this.props.username}</b></p>
+                <p style={{ fontSize: '30px' }}><b>Player: {this.props.user}</b></p>
                 <Timer />
-        <p>Your score: {this.state.points}</p>
+        <p>Your score: {this.state.score}</p>
         <button type="submit" onClick={this.newUsers}>submit</button>
         </form>
                 <div className="gameboard">
