@@ -43,10 +43,10 @@ class GameBoard extends Component {
             images: images.map(i=>{return {nimi: i.nimi, lukittu: false, kaannetty: false}}),
             count: 0,
             lasku: 0,
+            username: this.props.user,
             score: 0,
             tarkistaa: false,
-
-
+            
             
         }
 
@@ -125,12 +125,12 @@ class GameBoard extends Component {
 
 
     newUsers = (e) => {
-        e.preventDefault()
+        // e.preventDefault()
         console.log(this.state)
         addUsers(this.state).then(res=>{
             getUsers()
             .then(res => {
-                this.setState({ username: "", score: 0 })
+                this.setState({ username: "", score: this.state.score })
             });
             }
             
@@ -170,7 +170,7 @@ class GameBoard extends Component {
                         {nodes}
                     </div>
                     <p className="score">Score</p>
-                    <input value="New Game" type="button" onClick={this.props.newgame} />
+                    {/* <input value="New Game" type="button" onClick={this.props.newgame} /> */}
                 </div>
             </div>
         );
