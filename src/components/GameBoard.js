@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import Cards from "./Cards";
-import Timer from './Timer';
+// import Timer from './Timer';
 import {addUsers, getUsers} from '../service';
 
 
@@ -43,11 +43,11 @@ class GameBoard extends Component {
             images: images.map(i=>{return {nimi: i.nimi, lukittu: false, kaannetty: false}}),
             count: 0,
             lasku: 0,
+            username: this.props.user,
             score: 0,
             username: this.props.user,
             tarkistaa: false,
-
-
+            
             
         }
 
@@ -126,12 +126,12 @@ class GameBoard extends Component {
 
 
     newUsers = (e) => {
-        e.preventDefault()
+        // e.preventDefault()
         console.log(this.state)
         addUsers(this.state).then(res=>{
             getUsers()
             .then(res => {
-                this.setState({ username: "", score: 0 })
+                this.setState({ username: "", score: this.state.score })
             });
             }
             
@@ -160,7 +160,7 @@ class GameBoard extends Component {
 
                 <form>
                 <p style={{ fontSize: '30px' }}><b>Player: {this.props.user}</b></p>
-                <Timer />
+                {/* <Timer /> */}
         <p>Your score: {this.state.score}</p>
         <button type="submit" onClick={this.newUsers}>submit</button>
         </form>
@@ -171,7 +171,7 @@ class GameBoard extends Component {
                         {nodes}
                     </div>
                     <p className="score">Score</p>
-                    <input value="New Game" type="button" onClick={this.props.newgame} />
+                    {/* <input value="New Game" type="button" onClick={this.props.newgame} /> */}
                 </div>
             </div>
         );

@@ -18,12 +18,13 @@ class UserName extends Component {
 
     }
     startGame = (e) => {
-        // e.preventDefault();
-        if(this.state.username == "")   {
-            alert('Username required')
-        } else {
-        this.setState({ showComponent: true });
-    }}
+            // e.preventDefault();
+            if(this.state.username == "")   {
+                alert('Username required')
+            } else {
+            this.setState({ showComponent: true });
+        }}
+    
     
     
     render() {
