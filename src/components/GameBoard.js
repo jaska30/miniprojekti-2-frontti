@@ -9,15 +9,38 @@ class GameBoard extends Component {
     constructor(props) {
         super(props);
         const images= [
-            { nimi: "bear.png" },
-            { nimi: 'bunny.png' },
-            { nimi: 'cat.png' },
-            { nimi: 'deer.png' },
-            { nimi: 'dog.png' }, { nimi: 'duck.png' }, { nimi: 'eagle.png' }, { nimi: 'giraffe.png' }, { nimi: 'hedgehog.png' }, { nimi: 'kangaroo.png' }, { nimi: 'lion.png' }, { nimi: 'llama.png' }, { nimi: 'mouse.png' }, { nimi: 'owl.png' }, { nimi: 'piggy.png' }, { nimi: 'puppy.png' }, { nimi: 'snake.png' }, { nimi: 'squirrel.png' },
-            { nimi: "bear.png" }, { nimi: 'bunny.png' }, { nimi: 'cat.png' }, { nimi: 'deer.png' }, { nimi: 'dog.png' }, { nimi: 'duck.png' }, { nimi: 'eagle.png' }, { nimi: 'giraffe.png' }, { nimi: 'hedgehog.png' }, { nimi: 'kangaroo.png' }, { nimi: 'lion.png' }, { nimi: 'llama.png' }, { nimi: 'mouse.png' }, { nimi: 'owl.png' }, { nimi: 'piggy.png' }, { nimi: 'puppy.png' }, { nimi: 'snake.png' }, { nimi: 'squirrel.png' }]
+            // { nimi: "bear.png" },
+            // { nimi: 'bunny.png' },
+            // { nimi: 'cat.png' },
+            // { nimi: 'deer.png' },
+            // { nimi: 'dog.png' }, 
+            // { nimi: 'duck.png' }, 
+            // { nimi: 'eagle.png' }, 
+            // { nimi: 'giraffe.png' }, 
+            // { nimi: 'hedgehog.png' }, 
+            // { nimi: 'kangaroo.png' }, 
+            // { nimi: 'lion.png' }, 
+            // { nimi: 'llama.png' }, 
+            // { nimi: 'mouse.png' }, 
+            { nimi: 'owl.png' }, { nimi: 'piggy.png' }, { nimi: 'puppy.png' }, { nimi: 'snake.png' }, { nimi: 'squirrel.png' },
+            // { nimi: "bear.png" }, 
+            // { nimi: 'bunny.png' }, 
+            // { nimi: 'cat.png' }, 
+            // { nimi: 'deer.png' }, 
+            // { nimi: 'dog.png' }, 
+            // { nimi: 'duck.png' }, 
+            // { nimi: 'eagle.png' }, 
+            // { nimi: 'giraffe.png' }, 
+            // { nimi: 'hedgehog.png' }, 
+            // { nimi: 'kangaroo.png' }, 
+            // { nimi: 'lion.png' }, 
+            // { nimi: 'llama.png' }, 
+            // { nimi: 'mouse.png' }, 
+            { nimi: 'owl.png' }, { nimi: 'piggy.png' }, { nimi: 'puppy.png' }, { nimi: 'snake.png' }, { nimi: 'squirrel.png' }]
         this.state = {
             images: images.map(i=>{return {nimi: i.nimi, lukittu: false, kaannetty: false}}),
-            count: 0
+            count: 0,
+            tarkistaa: false
         }
 
     }
@@ -40,6 +63,7 @@ class GameBoard extends Component {
             if (kuva.kaannetty && !kuva.lukittu) {
                 console.log("Takaisin", i)
                 indeksit.push(i)
+                console.log(indeksit)
             }
         }
         if (indeksit.length === 2) {
@@ -50,26 +74,33 @@ class GameBoard extends Component {
                 callback();
             } else {
                 kuva1.kaannetty = kuva2.kaannetty = false;
-                setTimeout(()=>{callback()}, 2000);
+                setTimeout(()=>{callback()}, 1000);
             }
+            
         } else if (indeksit.length !== 0) {
             console.error("Virhe", indeksit);
         }
     }
 
+    newUser = (e) => {
+        e.preventDefault();
+        console.log(e)
+    }
+
     clicks = (id) => {
+        if (this.state.tarkistaa === true) return
         console.group("clicks");
         console.log("id", id);
         this.state.images[id].kaannetty = !this.state.images[id].kaannetty
         console.log("kaannetty", this.state.count);
-        this.setState({}, () => {
+        this.setState({tarkistaa: true}, () => {
         if (this.state.count === 1) {
             console.log('kaksi käännetty')
             this.resetoiTaulukko(()=>{
-                this.setState({count: 0})
+                this.setState({count: 0, tarkistaa: false})
             })
         } else {
-            this.setState({count: this.state.count+1})
+            this.setState({tarkistaa: false, count: this.state.count+1})
         }
         })
         console.groupEnd();
@@ -89,6 +120,7 @@ class GameBoard extends Component {
             }.bind(this))
         return (
             <div>
+                <input value="Submit" type="submit" onClick={this.newUser}/>
                 <p style={{ fontSize: '30px' }}><b>Player: {this.props.username}</b></p>
                 <Timer />
                 <div className="gameboard">
