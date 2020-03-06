@@ -11,33 +11,33 @@ class GameBoard extends Component {
     constructor(props) {
         super(props);
         const images= [
-            // { nimi: "bear.png" },
-            // { nimi: 'bunny.png' },
-            // { nimi: 'cat.png' },
-            // { nimi: 'deer.png' },
-            // { nimi: 'dog.png' }, 
-            // { nimi: 'duck.png' }, 
-            // { nimi: 'eagle.png' }, 
-            // { nimi: 'giraffe.png' }, 
-            // { nimi: 'hedgehog.png' }, 
-            // { nimi: 'kangaroo.png' }, 
-            // { nimi: 'lion.png' }, 
-            // { nimi: 'llama.png' }, 
-            // { nimi: 'mouse.png' }, 
+            { nimi: "bear.png" },
+            { nimi: 'bunny.png' },
+            { nimi: 'cat.png' },
+            { nimi: 'deer.png' },
+            { nimi: 'dog.png' }, 
+            { nimi: 'duck.png' }, 
+            { nimi: 'eagle.png' }, 
+            { nimi: 'giraffe.png' }, 
+            { nimi: 'hedgehog.png' }, 
+            { nimi: 'kangaroo.png' }, 
+            { nimi: 'lion.png' }, 
+            { nimi: 'llama.png' }, 
+            { nimi: 'mouse.png' }, 
             { nimi: 'owl.png' }, { nimi: 'piggy.png' }, { nimi: 'puppy.png' }, { nimi: 'snake.png' }, { nimi: 'squirrel.png' },
-            // { nimi: "bear.png" }, 
-            // { nimi: 'bunny.png' }, 
-            // { nimi: 'cat.png' }, 
-            // { nimi: 'deer.png' }, 
-            // { nimi: 'dog.png' }, 
-            // { nimi: 'duck.png' }, 
-            // { nimi: 'eagle.png' }, 
-            // { nimi: 'giraffe.png' }, 
-            // { nimi: 'hedgehog.png' }, 
-            // { nimi: 'kangaroo.png' }, 
-            // { nimi: 'lion.png' }, 
-            // { nimi: 'llama.png' }, 
-            // { nimi: 'mouse.png' }, 
+            { nimi: "bear.png" }, 
+            { nimi: 'bunny.png' }, 
+            { nimi: 'cat.png' }, 
+            { nimi: 'deer.png' }, 
+            { nimi: 'dog.png' }, 
+            { nimi: 'duck.png' }, 
+            { nimi: 'eagle.png' }, 
+            { nimi: 'giraffe.png' }, 
+            { nimi: 'hedgehog.png' }, 
+            { nimi: 'kangaroo.png' }, 
+            { nimi: 'lion.png' }, 
+            { nimi: 'llama.png' }, 
+            { nimi: 'mouse.png' }, 
             { nimi: 'owl.png' }, { nimi: 'piggy.png' }, { nimi: 'puppy.png' }, { nimi: 'snake.png' }, { nimi: 'squirrel.png' }]
         this.state = {
             images: images.map(i=>{return {nimi: i.nimi, lukittu: false, kaannetty: false}}),
@@ -45,8 +45,8 @@ class GameBoard extends Component {
             lasku: 0,
             score: 0,
             tarkistaa: false,
-            // info:[{username:"", score:0}]
-            username:this.props.user,
+
+
             
         }
 
@@ -110,8 +110,10 @@ class GameBoard extends Component {
             console.log('kaksi käännetty')
             
             this.resetoiTaulukko(()=>{
+
                 this.setState({score: this.state.score+1})
                 console.log('pisteet' + this.state.score)
+
                 this.setState({count: 0, tarkistaa: false})
             })
         } else {
@@ -120,6 +122,7 @@ class GameBoard extends Component {
         })
         console.groupEnd();
     }
+
 
     newUsers = (e) => {
         e.preventDefault()
@@ -141,6 +144,7 @@ class GameBoard extends Component {
     //         });
     //     }
 
+
     //komponentin latauksen yhteydessä mäpätään Images-array ja luodaan itemistä oma div-elementti 
     //gameboard-gridiin. -jaska
 
@@ -152,12 +156,14 @@ class GameBoard extends Component {
             }.bind(this))
         return (
             <div>
+
                 <form>
                 <p style={{ fontSize: '30px' }}><b>Player: {this.props.user}</b></p>
                 {/* <Timer /> */}
         <p>Your score: {this.state.score}</p>
         <button type="submit" onClick={this.newUsers}>submit</button>
         </form>
+
                 <div className="gameboard">
 
                     <div className="images">

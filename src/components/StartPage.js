@@ -26,6 +26,7 @@ class StartPage extends Component {
                 <UserName />
                 <HighscoreTable users={this.state.users} />
             </div>
+
         );
     }
 }
