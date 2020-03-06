@@ -17,3 +17,6 @@ class HighscoreTable extends Component {
     }
 }
 export default HighscoreTable;
+
+
+
