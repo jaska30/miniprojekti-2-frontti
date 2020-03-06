@@ -26,7 +26,7 @@ class StartPage extends Component {
             Your score is defined by the amount of clicks. Obviously the lower the click amount, the better you did.</p>
             <UserName />
             <HighscoreTable users={this.state.users} />
-      
+            </div>
 
         );
     }
