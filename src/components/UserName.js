@@ -32,9 +32,7 @@ class UserName extends Component {
         return (
             <form>
                 <div>
-                {this.state.showComponent ? <GameBoard user={this.state.username} newgame={this.startGame}/>: <p><b>Username</b>
-                <input className="input" onChange={this.newUser}/>
-                <input value="Start Game" type="button" onClick={this.startGame}/>
+                {this.state.showComponent ? <GameBoard user={this.state.username} newgame={this.startGame}/>: <p><b>Username</b> <input className="input" onChange={this.newUser}/> <input value="Start Game" type="button" onClick={this.startGame}/>
                 </p>}
                 </div>
             </form>
