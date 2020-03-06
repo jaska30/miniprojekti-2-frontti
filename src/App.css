@@ -29,6 +29,8 @@
 }
 
 .userlist {
+  height: 360;
+  background-color: pink;
   text-Align: center;
   margin: 20px;
   border: 2px solid black;
@@ -38,7 +40,8 @@
   display:inline-block
 }
 .gameboard {
-  background: #ccc;
+  border-Radius: 10px;
+  background:pink;
   border: 1px solid black;
   padding: 24px;
   width: 630px;

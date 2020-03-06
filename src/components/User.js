@@ -4,9 +4,15 @@ export default class User extends Component {
     render() {
         
         return (
-                <div className="scoretable">
-                    <p className="username">{this.props.user.username}, {this.props.user.score}</p>
-                </div>
+            <div className="scoretable">
+            <table className="username" align="center">
+                <tr>
+                    <td>{this.props.user.username}</td>
+                    <td>{this.props.user.score}
+                    </td>
+                </tr>
+            </table>
+        </div>
         )
     }
 }

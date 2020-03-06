@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import Cards from "./Cards";
-import Timer from './Timer';
+// import Timer from './Timer';
 import {addUsers, getUsers} from '../service';
 
 
@@ -154,7 +154,7 @@ class GameBoard extends Component {
             <div>
                 <form>
                 <p style={{ fontSize: '30px' }}><b>Player: {this.props.user}</b></p>
-                <Timer />
+                {/* <Timer /> */}
         <p>Your score: {this.state.score}</p>
         <button type="submit" onClick={this.newUsers}>submit</button>
         </form>
