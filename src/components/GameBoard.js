@@ -23,7 +23,8 @@ class GameBoard extends Component {
             lasku: 0,
             points: 0,
             tarkistaa: false,
-            info:[{username:"", score:0}]
+            username:this.props.username
+        
             
         }
 
@@ -84,7 +85,6 @@ class GameBoard extends Component {
             
             this.resetoiTaulukko(()=>{
                 this.setState({points: this.state.points+1})
-                this.setState({info: this.state.info.score+1})
                 console.log('pisteet' + this.state.points)
                 this.setState({count: 0, tarkistaa: false})
             })
@@ -95,22 +95,22 @@ class GameBoard extends Component {
         console.groupEnd();
     }
 
-    newUsers = (info) => {
-        info.prevenDefault()
-        console.log(info)
-        addUsers(info).then(res =>{
-            this.getList()
-
-            }
-        )}
+    
+    newUsers = () => {
+        let u = this.state.username
+        let p = this.state.points
+        console.log(u, p)
+        addUsers(u, p)
+        }
     
     getList = () => {
-        this.getUsers()
+        getUsers()
             .then(res => {
                 console.log(res.data)
                 this.setState({ users: res.data })
             });
         }
+    
 
     //komponentin latauksen yhteydessä mäpätään Images-array ja luodaan itemistä oma div-elementti 
     //gameboard-gridiin. -jaska
@@ -123,12 +123,12 @@ class GameBoard extends Component {
             }.bind(this))
         return (
             <div>
-                <form>
-                <p style={{ fontSize: '30px' }}><b>Player: {this.props.username}</b></p>
+                
+                <p style={{ fontSize: '30px' }} id="nimi"><b>Player: {this.props.username}</b></p>
                 <Timer />
         <p>Your score: {this.state.points}</p>
-        <button type="submit" onClick={this.newUsers}>submit</button>
-        </form>
+        <button type="button" onClick={this.newUsers}>submit</button>
+       
                 <div className="gameboard">
 
                     <div className="images">
